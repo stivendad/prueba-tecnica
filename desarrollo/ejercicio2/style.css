@@ -1,0 +1,24 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: var(--font-sans);
+}
+
+body {
+    font-size: 1.6rem;
+}
+h1, h2, h3 {
+    text-align: center;
+    margin: 5rem;
+}
+h3 {
+    margin-top: 10rem;
+}

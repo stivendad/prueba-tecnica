@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Calcular Puntaje
+  version: 1.0.0
+paths:
+  /calcular-puntaje:
+    post:
+      summary: Calcula el puntaje en base a un arreglo de números.
+      description: Calcula el puntaje en base a las reglas especificadas para cada número en el arreglo.
+      requestBody:
+        description: Arreglo de números para calcular el puntaje.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      responses:
+        '200':
+          description: Puntaje calculado exitosamente.
+          content:
+            application/json:
+              example:
+                value: 15

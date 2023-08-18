@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Calculo de Producción de Leche
+  version: 1.0.0
+paths:
+  /calcular-produccion:
+    post:
+      summary: Calcula la producción diaria de leche de un grupo de vacas.
+      description: Calcula la producción diaria de leche de un grupo de vacas durante un número de días especificado y lo almacena en una matriz. 
+      requestBody:
+        description: Datos necesarios para calcular la producción.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              properties:
+                numeroVacas:
+                  type: integer
+                  description: Número de vacas en el grupo.
+                numeroDias:
+                  type: integer
+                  description: Número de días para calcular la producción.
+      responses:
+        '200':
+          description: Producción calculada exitosamente.
+          content:
+            application/json:
+              example:
+                - [25, 28, 23] # Producción día 1
+                - [24, 26, 22] # Producción día 2
+                # ... más días
+paths:
+  /total-produccion:
+    post:
+      summary: Calcula la producción total por día para un grupo de vacas.
+      description: Calcula la producción total por día de un grupo de vacas durante un período determinado.
+      requestBody:
+        description: Datos necesarios para calcular la producción total.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              properties:
+                produccion:
+                  type: array
+                  description: Matriz de producción diaria de leche de las vacas.
+                  items:
+                    type: array
+                    items:
+                      type: number
+                numeroDias:
+                  type: integer
+                  description: Número de días para calcular la producción total.
+                numeroVacas:
+                  type: integer
+                  description: Número de vacas en la matriz.
+      responses:
+        '200':
+          description: Producción total por día calculada exitosamente.
+          content:
+            application/json:
+              example:
+                - 76 # Total producción día 1
+                - 72 # Total producción día 2
+                # ... más días
+paths:
+  /analisis-produccion:
+    post:
+      summary: Realiza análisis de producción diaria de leche.
+      description: Realiza un análisis para identificar el día con mayor y menor producción total.
+      requestBody:
+        description: Matriz de producción diaria de leche.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              properties:
+                produccion:
+                  type: array
+                  description: Matriz de producción diaria de leche.
+                  items:
+                    type: array
+                    items:
+                      type: number
+                numeroDias:
+                  type: integer
+                  description: Número de días de producción.
+      responses:
+        '200':
+          description: Análisis realizado exitosamente.
+          content:
+            application/json:}
+              example:
+                dia: "Día 3"
+                mayorProduccion: "Día 3 - 75 litros."
+                menorProduccion: "Día 1 - 20 litros."
+                vacaMayorProduccion: [2, 5]
+paths:
+  /mayor-vaca-dia:
+    post:
+      summary: Identifica la(s) vaca(s) con mayor producción en un día específico.
+      description: Identifica la(s) vaca(s) con mayor producción de leche en un día determinado.
+      requestBody:
+        description: Matriz de producción diaria de leche y día específico.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              properties:
+                produccion:
+                  type: array
+                  description: Matriz de producción diaria de leche.
+                  items:
+                    type: array
+                    items:
+                      type: number
+                dia:
+                  type: integer
+                  description: Día específico para el análisis de producción.
+      responses:
+        '200':
+          description: Vaca(s) con mayor producción identificada(s) exitosamente.
+          content:
+            application/json:
+              example:
+                - 2 # Número de la vaca con mayor producción en el día especificado
+                - [5, 3] # Número de las vacas con mayor producción en el día especificado

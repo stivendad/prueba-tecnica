@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Calcular Tribonacci
+  version: 1.0.0
+paths:
+  /validar-secuencia:
+    post:
+      summary: Valida si una secuencia de números es válida según la regla dada.
+      description: Verifica si los números en la secuencia cumplen con la regla dada.
+      requestBody:
+        description: Secuencia de números a validar.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      responses:
+        '200':
+          description: Resultado de validación.
+          content:
+            application/json:
+              example:
+                value: true
+
+  /tribonacci:
+    post:
+      summary: Calcula los siguientes números en una secuencia Tribonacci.
+      description: Calcula los siguientes números en la secuencia Tribonacci a partir de los números dados.
+      requestBody:
+        description: Números de inicio para la secuencia Tribonacci.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+      responses:
+        '200':
+          description: Secuencia Tribonacci calculada.
+          content:
+            application/json:
+              example:
+                value: [2, 3, 5, 10, 18, 33]
